@@ -26,8 +26,7 @@ $use_auth = true;
 // Users: array('Username' => 'Password', 'Username2' => 'Password2', ...)
 // Generate secure password hash - https://tinyfilemanager.github.io/docs/pwd.html
 $auth_users = array(
-    'admin' => '$2y$10$/K.hjNr84lLNDt8fTXjoI.DBp6PpeyoJ.mGwrrLuCZfAwfSAGqhOW', //admin@123
-    'user' => '$2y$10$Fg6Dz8oH9fPoZ2jJan5tZuv6Z4Kp7avtQ9bDfrdRntXtPeiMAZyGO' //12345
+    'admin' => '$2y$10$ppjBoi9XlaP1KyPFx6ova.cbk3uLuXxWhziFqfaigpPzF0VNKw3yy' //admin@123
 );
 
 // Readonly users
@@ -2223,7 +2222,7 @@ $all_files_size = 0;
                 $date_sorting = strtotime(date("F d Y H:i:s.", $modif_raw));
                 $filesize_raw = fm_get_size($path . '/' . $f);
                 $filesize = fm_get_filesize($filesize_raw);
-                $filelink = '?p=' . urlencode(FM_PATH) . '&amp;view=' . urlencode($f);
+                $filelink = '?p=' . urlencode(FM_PATH) . '&amp;edit=' . urlencode($f) . '&amp;env=ace';
                 $all_files_size += $filesize_raw;
                 $perms = substr(decoct(fileperms($path . '/' . $f)), -4);
                 $owner = array('name' => '?'); 
@@ -2287,6 +2286,7 @@ $all_files_size = 0;
                         <?php endif; ?>
                         <a title="<?php echo lng('DirectLink') ?>" href="<?php echo fm_enc(FM_ROOT_URL . (FM_PATH != '' ? '/' . FM_PATH : '') . '/' . $f) ?>" target="_blank"><i class="fa fa-link"></i></a>
                         <a title="<?php echo lng('Download') ?>" href="?p=<?php echo urlencode(FM_PATH) ?>&amp;dl=<?php echo urlencode($f) ?>" onclick="confirmDailog(event, 1211, '<?php echo lng('Download'); ?>','<?php echo urlencode($f); ?>', this.href);"><i class="fa fa-download"></i></a>
+                        <a title="<?php echo lng('View') ?>" href="?p=<?php echo urlencode(FM_PATH) ?>&amp;view=<?php echo urlencode($f) ?>"> <i class="fa fa-file"></i></a>
                     </td>
                 </tr>
             <?php
